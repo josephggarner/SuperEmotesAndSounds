@@ -7,7 +7,7 @@ local slshcmdframe2 = slashcmds2
 superframe:Hide();
 slshcmdframe1:SetText("")
 slshcmdframe2:SetText("")
-message("hello")
+message("HERRO")
 superframe:SetScale(1)
 
 --###Slash command Handler###--
