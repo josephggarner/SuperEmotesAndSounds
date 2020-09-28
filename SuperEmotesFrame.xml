@@ -18,7 +18,11 @@
 		<Scripts>
 			<OnLoad>
 				XML_PopulateList()
+				tinsert(UISpecialFrames, self:GetName());
 			</OnLoad>
+			<OnShow>
+				PlaySound(73279);
+			</OnShow>
 		</Scripts>
 		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" tile="true">
 			<BackgroundInsets>
@@ -82,7 +86,7 @@
 				</Anchors>
 				<Scripts>
 					<OnVerticalScroll>
-						FauxScrollFrame_OnVerticalScroll(self, offset, 16, MyModScrollBar_Update);
+						FauxScrollFrame_OnVerticalScroll(self, offset-3, 16, MyModScrollBar_Update);
 					</OnVerticalScroll>
 					<OnShow>					
 					</OnShow>
