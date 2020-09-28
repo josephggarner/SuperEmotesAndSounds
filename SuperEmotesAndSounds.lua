@@ -2,11 +2,11 @@
 --SuperEmotes works in tandem with ReactiveEmotes.
 --SuperEmotes allows an in game soundboard through use of custom emotes.
 local superframe = SuperEmotesFrame
-local slshcmdframe1 = slashcmds
-local slshcmdframe2 = slashcmds2
+--local slshcmdframe1 = slashcmds
+--local slshcmdframe2 = slashcmds2
 superframe:Hide();
-slshcmdframe1:SetText("")
-slshcmdframe2:SetText("")
+--slshcmdframe1:SetText("")
+--slshcmdframe2:SetText("")
 message("HERRO")
 superframe:SetScale(1)
 
