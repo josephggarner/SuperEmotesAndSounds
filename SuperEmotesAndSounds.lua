@@ -7,7 +7,7 @@ local superframe = SuperEmotesFrame
 superframe:Hide();
 --slshcmdframe1:SetText("")
 --slshcmdframe2:SetText("")
-message("HERRO")
+
 superframe:SetScale(1)
 
 --###Slash command Handler###--

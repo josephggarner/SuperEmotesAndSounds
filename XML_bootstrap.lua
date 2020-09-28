@@ -16,7 +16,6 @@ function MyModScrollBar_Update()
   for line=1,10 do
     lineplusoffset = line + FauxScrollFrame_GetOffset(MyModScrollBar);
     if lineplusoffset <= #SESEmotesLIB then
-		--message("line "..line.."       lineplusoffset "..lineplusoffset)
       getglobal("MyModEntry"..line):SetText(MyModData[lineplusoffset][1].." - "..MyModData[lineplusoffset][2]);
       getglobal("MyModEntry"..line):Show();
     else

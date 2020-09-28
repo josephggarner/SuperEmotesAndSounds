@@ -8,7 +8,7 @@
 	</Button>
 	<Frame name="SuperEmotesFrame" setAllPoints="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true" enableMouseMotion="true" clampedToScreen="true">
 		<Size>
-			<AbsDimension x="230" y="400" />
+			<AbsDimension x="230" y="300" />
 		</Size>
 		<Anchors>
 			<Anchor point="TOPLEFT">
@@ -71,12 +71,12 @@
 				<Anchors>
 					<Anchor point="TOPLEFT">
 						<Offset>
-							<AbsDimension x="15" y="-200" />
+							<AbsDimension x="15" y="-125" />
 						</Offset>
 					</Anchor>
 					<Anchor point="BOTTOMRIGHT">
 						<Offset>
-							<AbsDimension x="-15" y="10" />
+							<AbsDimension x="-15" y="15" />
 						</Offset>
 					</Anchor>
 				</Anchors>
