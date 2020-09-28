@@ -11,8 +11,8 @@ end
 function MyModScrollBar_Update()
   local line; -- 1 through 5 of our window to scroll
   local lineplusoffset; -- an index into our data calculated from the scroll offset
-  FauxScrollFrame_Update(MyModScrollBar,#SESEmotesLIB,10,16);
-  for line=1,10 do
+  FauxScrollFrame_Update(MyModScrollBar,#SESEmotesLIB,9,16);
+  for line=1,9 do
     lineplusoffset = line + FauxScrollFrame_GetOffset(MyModScrollBar);
     if lineplusoffset <= #SESEmotesLIB then
       getglobal("MyModEntry"..line):SetText(MyModData[lineplusoffset]);
