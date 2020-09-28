@@ -1,0 +1,11 @@
+## Title: SuperEmotesAndSounds
+## Version: 1.2
+## Author: xo-Malfurion,ellipsee-Malfurion
+## Interface: 80300
+## Notes: Breathe life into your character. Watch them automatically react to emotes and events around you!
+
+SESSoundLibrary.lua
+XML_bootstrap.lua
+SuperEmotesFrame.xml
+ReactiveEmotes.lua
+SuperEmotesAndSounds.lua
