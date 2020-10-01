@@ -6,7 +6,7 @@
 		</Size>
 		<NormalFont style="GameFontHighlightLeft" />
 	</Button>
-	<Frame name="SuperEmotesFrame" setAllPoints="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true" enableMouseMotion="true" clampedToScreen="true">
+	<Frame name="SuperEmotesFrame" setAllPoints="true" parent="UIParent" toplevel="true" movable="true" enableMouse="true" enableMouseMotion="true" clampedToScreen="true" moveable="true">
 		<Size>
 			<AbsDimension x="230" y="300" />
 		</Size>
@@ -19,10 +19,17 @@
 			<OnLoad>
 				XML_PopulateList()
 				tinsert(UISpecialFrames, self:GetName());
+				self:RegisterForDrag("LeftButton")
 			</OnLoad>
 			<OnShow>
 				PlaySound(73279);
 			</OnShow>
+			<OnDragStart>
+				self:StartMoving();
+			</OnDragStart>
+			<OnDragStop>
+				self:StopMovingOrSizing();
+			</OnDragStop>
 		</Scripts>
 		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" tile="true">
 			<BackgroundInsets>
