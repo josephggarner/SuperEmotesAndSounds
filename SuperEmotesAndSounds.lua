@@ -2,11 +2,9 @@
 --SuperEmotes works in tandem with ReactiveEmotes.
 --SuperEmotes allows an in game soundboard through use of custom emotes.
 local superframe = SuperEmotesFrame
---local slshcmdframe1 = slashcmds
---local slshcmdframe2 = slashcmds2
+
 superframe:Hide();
---slshcmdframe1:SetText("")
---slshcmdframe2:SetText("")
+
 
 superframe:SetScale(1)
 
@@ -109,6 +107,8 @@ local SESAddonListener = CreateFrame("FRAME")	--Addon events
 local broadcastEnabled = true;
 local debugmode = false;
 --#####SOLO EVENTS######
+--		SOLO EVENTS	- These are what you do when you trigger a certain event
+--######################
 local playername = GetUnitName("player");
 local servername = GetRealmName("player");
 local fullname = playername.."-"..servername;
@@ -174,7 +174,7 @@ function broadcastSES(event)
 	end
 end
 --########################
---		SHARED EVENTS	--
+--		SHARED EVENTS	-- Your response to solo events that get broadcasted
 --########################
 
 if broadcastEnabled == true then
@@ -203,6 +203,7 @@ local SESsender;
 			end
 		end
 	end
+
 		function setContains(SESevents, event)
 			return SESevents[event] ~= nil
 		end
@@ -257,16 +258,6 @@ function SESnamesplit (name, sep)
         end
         return t
 end
-function FillEmoteLists()
-	local text="";
-	for i=1,#SESEmotesLIB do
-		text = text.."\n"..SESEmotesLIB[i][1].." - "..SESEmotesLIB[i][3]
-	end
-	slshcmdframe1:SetText(text)
-end
-
-
---FillEmoteLists()
 
 --#############Play random sound file from Dir####################--
 function SESPlaySoundFile(libTable) 
