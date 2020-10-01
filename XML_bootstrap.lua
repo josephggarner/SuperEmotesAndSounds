@@ -19,7 +19,7 @@ function MyModScrollBar_Update()
     if lineplusoffset <= #SESEmotesLIB then
       getglobal("MyModEntry"..line):SetText(MyModData[lineplusoffset][1].." - "..MyModData[lineplusoffset][2]);
 	  getglobal("MyModEntry"..line):SetScript("OnClick", function(self) 
-				emotemsg = "EMOTE-"..MyModData[lineplusoffset-(10-line)][1]
+				emotemsg = "EMOTE-"..lineplusoffset-(10-line)
 				broadcastSES(emotemsg)
 					--print(emotemsg)
 					--print("line "..line.."    lineplusoffset "..lineplusoffset.."    Offset "..FauxScrollFrame_GetOffset(MyModScrollBar))
