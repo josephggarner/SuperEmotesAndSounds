@@ -1,7 +1,7 @@
 ## Title: SuperEmotesAndSounds
 ## Version: 1.2
 ## Author: xo-Malfurion,ellipsee-Malfurion
-## Interface: 80300
+## Interface: 90001
 # /run print((select(4, GetBuildInfo()))) to get current Interface number.
 ## Notes: Breathe life into your character. Watch them automatically react to emotes and events around you!
 
