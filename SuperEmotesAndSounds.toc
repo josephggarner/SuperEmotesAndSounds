@@ -2,7 +2,11 @@
 ## Version: 1.2
 ## Author: xo-Malfurion,ellipsee-Malfurion
 ## Interface: 90001
+<<<<<<< HEAD
 # /run print((select(4, GetBuildInfo()))) To get current Interface number, run in wow chat.
+=======
+# /run print((select(4, GetBuildInfo()))) To get current Interface number, run below in wow
+>>>>>>> 59fe244d79f35bc4a86b27fa7453e684dfd0bd60
 ## Notes: Breathe life into your character. Watch them automatically react to emotes and events around you!
 
 SESSoundLibrary.lua
