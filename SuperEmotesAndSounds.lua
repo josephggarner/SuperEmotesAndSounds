@@ -4,9 +4,12 @@
 local superframe = SuperEmotesFrame
 
 superframe:Hide();
-
-
 superframe:SetScale(1)
+superframe:SetBackdrop( { 
+	bgFile = "Interface/Tooltips/UI-Tooltip-Background", 
+	edgeFile = "Interface/Tooltips/UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16, 
+	insets = { left = 4, right = 4, top = 4, bottom = 4 }
+});
 
 --###Slash command Handler###--
 SLASH_SES1, SLASH_SES2 = '/ses', '/superemotes';
