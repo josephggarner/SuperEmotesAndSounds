@@ -1,13 +1,13 @@
 -- Author      : khris(chris) Xo-Malfurion
---SuperEmotes works in tandem with ReactiveEmotes.
---ReactiveEmotes ..react.. to other emotes by queue'ing up emote responses.
---Queue up emotes from other addons with 'G_SES_RE:QueueEmote(emote,target)' command.
+--SuperEmotes works in tandem with ReactiveEmotes."]={};
+--ReactiveEmotes ..react.. to other emotes by queue'ing up emote responses."]={};
+--Queue up emotes from other addons with 'G_SES_RE:QueueEmote(emote,target)' command."]={};
 
-local MinDelay=1;--         Response delay in seconds.
-local Cooldown=3;--         Minimal time between queued emotes in seconds.
+local MinDelay=1;--         Response delay in seconds."]={};
+local Cooldown=3;--         Minimal time between queued emotes in seconds."]={};
 local defaultTriggerCD=20;
 local lastDefaultTriggerTime=GetTime();
-local CrossFactionEmote="FORTHEHORDE";-- Emote sent to cross-faction players.
+local CrossFactionEmote="FORTHEHORDE";-- Emote sent to cross-faction players."]={};
 local playername = GetUnitName("player");
 local servername = GetRealmName("player");
 local fullname = playername.."-"..servername;
@@ -45,17 +45,296 @@ local FactionRaces={
 
 --########--TRIGGERS / RESPONSES-------EDIT/ADD TRIGGERS/RESPONSES HERE---------------------------######--
 --##---##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##
-local Triggers={--      This table contains the trigger phrases and reply type/messages.
-	
-    ["licks you."]={"COWER","CRY","GIGGLE"};									--Don't use cower as a trigger so that chains end here
-    ["thinks you are a sexy devil."]={"gasps in shock at %N!"};
-    ["dances with you."]={"DANCE", "thinks %N needs to go watch Footloose.", "has never seen moves like %N's before!", "asks if %N knows Kevin Bacon."};
-	["pets you."]={"BARK","PURR","MOO"};
-	["eyes you up and down."]={"FART"};
-	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO"};
-	["glares angrily at you."]={"GUFFAW", "JK"};
-	["roars with bestial vigor at you.  So fierce!"]={"BOGGLE", "YAWN"};
+local Triggers={--      This table contains the trigger phrases and reply type/messages."]={};
+[""]={};
+
+--["is so bashful...too bashful to get your attention."]={};
+--["begs you.  How pathetic."]={};
+--["blows you a kiss."]={};
+--["blushes at you."]={};
+--["boggles at you."]={};
+--["bows before you."]={};
+--["applauds at you.  Bravo."]={};
+--["waves goodbye to you.  Farewell."]={};
+--["applauds at you.  Bravo."]={};
+
+ 
+
+	--ANIMATED EMOTES
+	--Angry & Mad
 	["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
+	--Applaud, Applause & Bravo
+	["applauds at you"]={"THANK", "BOW", "CURTSEY"};
+	--Attacktarget
+	["tells everyone to attack you."]={};
+	--Bashful
+	["is so bashful...too bashful to get your attention."]={};
+	--Beg
+	["begs you.  How pathetic."]={};
+	--Blow
+	["blows you a kiss."]={};
+	--Blush
+	["blushes at you."]={};
+	--Boggle
+	["boggles at you."]={};
+	--Bow
+	["bows before you."]={};
+	--Bye, Goodbye & Farewell
+	["waves goodbye to you.  Farewell!"]={};
+	--Cackle
+	["cackles maniacally at you."]={};
+	--Charge (No Target Emote)
+	["starts to charge."]={};
+	--Cheer
+	["cheers at you."]={};
+	--Chew, Eat & Feast
+	["begins to eat rations in front of you."]={};
+	--Chicken, Flap & Strut
+	--With arms flapping, %Name
+	["struts around you.  Cluck, Cluck, Chicken."]={};
+	--Chuckle
+	["chuckles at you."]={};
+	--Clap
+	["claps excitedly for you."]={};
+	--Commend
+	["commends you on a job well done."]={};
+	--Confused
+	["looks at you with a confused look."]={};
+	--Congrats & Congratulate
+	["congratulates you."]={};
+	--Cry, Sob & Weep
+	["cries on your shoulder."]={};
+	--Curious
+	["is curious what you are up to."]={};
+	--Curtsey
+	["curtsies before you."]={};
+	--Dance
+    ["dances with you."]={"DANCE", "thinks %N needs to go watch Footloose.", "has never seen moves like %N's before!", "asks if %N knows Kevin Bacon."};
+	--Drink & Shindig
+	["raises a drink to you.  Cheers."]={};
+	--Flee
+	["yells for you to flee."]={};
+	--Flex & Strong
+	["flexes at you.  Oooooh so strong."]={};
+	--Flirt
+	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO"};
+	--Followme
+	["motions for you to follow."]={};
+	--Gasp
+	["gasps at you."]={};
+	--Giggle
+	["giggles at you."]={};
+	--Gloat
+	["gloats over your misfortune."]={};
+	--Golfclap
+	["claps for you, clearly unimpressed."]={};
+	--Greet & Greetings
+	["greets you warmly."]={};
+	--Grovel & Peon
+	["grovels before you like a subservient peon."]={};
+	--Guffaw
+	["takes one look at you and lets out a guffaw."]={};
+	--Hail
+	["hails you."]={};
+	--Healme
+	["calls out for healing."]={};
+	--Hello & Hi
+	["greets you with a hearty hello."]={};
+	--Helpme (No Target Emote)
+	["cries out for help."]={};
+	--Incoming
+	["points you out as an incoming enemy."]={};
+	--Insult
+	["thinks you are the son of a motherless ogre."]={};
+	--Kiss
+	["blows you a kiss."]={};
+	--Kneel
+	["kneels before you."]={};
+	--Lay, Laydown, Lie & Liedown
+	["lies down before you."]={};
+	--Lol
+	["laughs at you."]={};
+	--Lost
+	["wants you to know that he is hopelessly lost."]={};
+	--Mourn
+	--In quiet contemplation, %Name
+	["mourns your death."]={};
+	--Nod & Yes
+	["nods at you."]={};
+	--OOM
+	["is low on mana."]={};
+	--Openfire
+	["orders you to open fire."]={};
+	--Plead
+	["pleads with you."]={};
+	--Point
+	["points at you."]={};
+	--Ponder
+	["ponders your actions."]={};
+	--Pray
+	["says a prayer for you."]={};
+	--Puzzled
+	["puzzled by you. What are you doing."]={};
+	--Question
+	["questions you."]={};
+	--Rasp & Rude
+	["makes a rude gesture at you."]={};
+	--Roar
+	["roars with bestial vigor at you.  So fierce!"]={"BOGGLE", "YAWN"};
+	--Rofl
+	["rolls on the floor laughing at you."]={};
+	--Salute
+	["salutes you with respect."]={};
+	--Shrug (Default Reply, do not react)
+	--["shrugs at you.  Who knows."]={};
+	--Shy
+	["smiles shyly at you."]={};
+	--Sleep (No Target Emote)
+	["falls asleep. Zzzzzzz."]={};
+	--Surrender
+	["surrenders before you.  Such is the agony of defeat..."]={};
+	--Talk
+	["wants to talk things over with you."]={};
+	--Talkex
+	["talks excitedly with you."]={};
+	--Talkq
+	["questions you."]={};
+	--Taunt
+	["makes a taunting gesture at you. Bring it."]={};
+	--Victory
+	["basks in the glory of victory with you."]={};
+	--Violin
+	["plays the world's smallest violin for you."]={};
+	--Wave
+	["waves at you."]={};
+	--Welcome
+	["welcomes you."]={};
+
+	--NON-ANIMATED EMOTES
+	--Agree
+	--Amaze
+	--Apologize
+	--Bark
+	--Beckon
+	--Belch
+	--Bite
+	--Bleed
+	--Blink
+	--Blood
+	--Bonk
+	--Bored
+	--Bounce
+	--BRB
+	--Burp
+	--Calm
+	--Cat
+	--Catty
+	--Cold
+	--Comfort
+	--Cough
+	--Cower
+	--Crack
+	--Cringe
+	--Cuddle
+	--Disappointed
+	--Doh
+	--Doom
+	--Drool
+	--Duck
+	--Eye
+	["eyes you up and down."]={"FART"};
+	--Fart
+	--Fear
+	--Fidget
+	--Flop
+	--Food
+	--Frown
+	--Gaze
+	--Glad
+	--Glare
+	["glares angrily at you."]={"GUFFAW", "JK"};
+	--Grin
+	--Groan
+	--Happy
+	--Hug
+	--Hungry
+	--Impatient
+	--Introduce
+	--JK
+	--Knuckles
+	--Lavish
+	--Lick
+	["licks you."]={"COWER","CRY","GIGGLE"};
+	--Listen
+	--Massage
+	--Moan
+	--Mock
+	--Moon
+	--No
+	--Nod
+	--Nosepick
+	--Panic
+	--Pat
+	--Peer
+	--Pest
+	--Pet
+	["pets you."]={"BARK","PURR","MOO"};
+	--Pick
+	--Pity
+	--Pizza
+	--Poke
+	--Pounce
+	--Praise
+	--Purr
+	--Raise
+	--Rdy
+	--Ready
+	--Rear
+	--Scratch
+	--Sexy
+	["thinks you are a sexy devil."]={"gasps in shock at %N!"};
+	--Shake
+	--Shimmy
+	--Shiver
+	--Shoo
+	--Sigh
+	--Slap
+	--Smell
+	--Smirk
+	--Snarl
+	--Snicker
+	--Sniff
+	--Snub
+	--Soothe
+	--Sorry
+	--Spit
+	--Spoon
+	--Stare
+	--Stink
+	--Surprised
+	--Tap
+	--Tease
+	--Thank
+	--Thanks
+	--Thirsty
+	--Threat
+	--Tickle
+	--Threaten
+	--Tired
+	--TY
+	--Veto
+	--Volunteer
+	--Whine
+	--Whistle
+	--Wicked
+	--Wickedly
+	--Work
+	--Wrath
+	--Yawn
+
+	--NO MESSAGE EMOTES
+	--Sit
+	--Train
 }
 local pandarenTriggers = {"/gasp", "/puzzled", "/question", "/drool", "/panic", "/shoo"};
 local defaultTrigger = "SHRUG";
@@ -108,6 +387,11 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 	local now=GetTime();	
     local guid,msg,sender=select(12,...),...;
 	local response=Triggers[findEmoteIndex(msg)];
+	if type(response) == "table" then
+		if next(response) == nil then
+			response = nil;
+		end
+	end
 --	print("response is a table: "..type(response))
 --	print(msg:match("%a*%s(.*)"))
 --	print("guid: "..guid)
@@ -115,7 +399,7 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 --	print("msg: "..type(msg))
 --	print("sender: "..sender)
 		
-	if guid~=PlayerGUID then--  Don't respond to emotes the player sent.
+	if guid~=PlayerGUID then--  Don't respond to emotes the player sent."]={};
 
 		if FactionRaces[select(4,GetPlayerInfoByGUID(guid)) or ""]==PLAYER_FACTION then
 --          Queue cross-faction response
