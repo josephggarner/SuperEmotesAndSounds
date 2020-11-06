@@ -10,3 +10,14 @@
 						
 	While in game:
 	/ses help
+
+	Potential TODOs:
+	- Character Personality Profile (Your character can give angry/happy/etc responses)
+	- Sound Clip Throttle
+	- Profanity Filter
+	- Options Menu
+	- Frame/Graphic Overhaul
+	- More Content
+		- More Sound Clips
+		- More custom reactions
+	- Volume Adjustment and Channel Picker
