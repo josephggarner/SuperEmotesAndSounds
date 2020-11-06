@@ -49,18 +49,6 @@ local FactionRaces={
 --##---##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##
 local Triggers={--      This table contains the trigger phrases and reply type/messages."]={};
 
---["is so bashful...too bashful to get your attention."]={};
---["begs you.  How pathetic."]={};
---["blows you a kiss."]={};
---["blushes at you."]={};
---["boggles at you."]={};
---["bows before you."]={};
---["applauds at you.  Bravo."]={};
---["waves goodbye to you.  Farewell."]={};
---["applauds at you.  Bravo."]={};
-
- 
-
 	--ANIMATED EMOTES
 	--Angry & Mad
     ["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
@@ -104,6 +92,8 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	["looks at you with a confused look."]={};
 	--Congrats & Congratulate
 	["congratulates you."]={};
+	--Cower & Fear
+	["cowers in fear at the sight of you."]={};
 	--Cry, Sob & Weep
 	["cries on your shoulder."]={};
 	--Curious
@@ -174,8 +164,8 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Pray
 	["says a prayer for you."]={};
 	--Puzzled
-	["puzzled by you. What are you doing."]={};
-	--Question
+	["puzzled by you. What are you doing?"]={};
+	--Question & Talkq
 	["questions you."]={};
 	--Rasp & Rude
 	["makes a rude gesture at you."]={};
@@ -197,8 +187,6 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	["wants to talk things over with you."]={};
 	--Talkex
 	["talks excitedly with you."]={};
-	--Talkq
-	["questions you."]={};
 	--Taunt
 	["makes a taunting gesture at you. Bring it."]={};
 	--Victory
@@ -228,27 +216,25 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Burp
 	--Calm
 	--Cat
-	--Catty
+	--Catty & Scratch
 	--Cold
 	--Comfort
 	--Cough
-	--Cower
-	--Crack
+	--Crack & Knuckles
 	--Cringe
 	--Cuddle
-	--Disappointed
+	--Disappointed & Frown
 	--Doh
-	--Doom
+	--Doom & Wrath
 	--Drool
 	--Duck
 	--Eye
 	["eyes you up and down."]={"FART"};
 	--Fart
-	--Fear
 	--Fidget
 	--Flop
-	--Food
-	--Frown
+	--Food, Hungry & Pizza
+	--"EAT"
 	--Gaze
 	--Glad
 	--Glare
@@ -257,16 +243,15 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Groan
 	--Happy
 	--Hug
-	--Hungry
 	--Impatient
 	--Introduce
 	--JK
-	--Knuckles
 	--Lavish
 	--Lick
 	["licks you."]={"COWER","CRY","GIGGLE"};
 	--Listen
 	--Massage
+	["massages your shoulders."]={"MOAN"};
 	--Moan
 	--Mock
 	--Moon
@@ -281,7 +266,6 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	["pets you."]={"BARK","PURR","MOO"};
 	--Pick
 	--Pity
-	--Pizza
 	--Poke
 	--Pounce
 	--Praise
@@ -289,11 +273,9 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Raise
 	--Rdy
 	--Ready
-	--Rear
-	--Scratch
+	--Rear & Shake
 	--Sexy
 	["thinks you are a sexy devil."]={"gasps in shock at %N!"};
-	--Shake
 	--Shimmy
 	--Shiver
 	--Shoo
@@ -326,10 +308,8 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Volunteer
 	--Whine
 	--Whistle
-	--Wicked
-	--Wickedly
+	--Wicked & Wickedly
 	--Work
-	--Wrath
 	--Yawn
 
 	--NO MESSAGE EMOTES
