@@ -54,9 +54,10 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	["eyes you up and down."]={"FART"};
 	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO"};
 	["glares angrily at you."]={"GUFFAW", "JK"};
-	["roars at you."]={"BOGGLE", "YAWN"};
-
+	["roars with bestial vigor at you.  So fierce!"]={"BOGGLE", "YAWN"};
+	["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
 }
+local pandarenTriggers = {"/gasp", "/puzzled", "/question", "/drool", "/panic", "/shoo"};
 local defaultTrigger = "SHRUG";
 --########--TRIGGERS / RESPONSES-------EDIT/ADD TRIGGERS/RESPONSES ABOVE---------------------------######--
 --##---##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##
@@ -87,8 +88,17 @@ function SES_RE:QueueEmote(emote,target)
 				--if tbl[1] then print("tbl1:"..tbl[1]) else print("tbl[1] is nil") return end
 				--if tbl[2] then print("tbl2:"..tbl[2]) else print("tbl[2] is nil") return end
 				--if tbl[3] then print("tbl3:"..tbl[3]) else print("tbl[3] is nil") return end
-    table.insert(self.ResponseQueue,tbl);
+	table.insert(self.ResponseQueue,tbl);
 	--print("# in response Queue: "..#self.ResponseQueue)
+end
+
+function findEmoteIndex(msg)
+	for key, value in pairs(Triggers) do
+		local found = string.find(msg, key)
+		if found ~= nil then
+			return key
+		end
+	end
 end
 
  --listens to messages and determines how to respond if at all
@@ -97,14 +107,21 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 	if not PlayerGUID then PlayerGUID=UnitGUID("player"); end
 	local now=GetTime();	
     local guid,msg,sender=select(12,...),...;
-	local response=Triggers[msg:match("^%S+%s*(.-)$")];
+	local response=Triggers[findEmoteIndex(msg)];
+--	print("response is a table: "..type(response))
+--	print(msg:match("%a*%s(.*)"))
+--	print("guid: "..guid)
+--	print("msg: "..msg)
+--	print("msg: "..type(msg))
+--	print("sender: "..sender)
 		
 	if guid~=PlayerGUID then--  Don't respond to emotes the player sent.
 
 		if FactionRaces[select(4,GetPlayerInfoByGUID(guid)) or ""]==PLAYER_FACTION then
 --          Queue cross-faction response
 			if select(4,GetPlayerInfoByGUID(guid)) == "Pandaren" then	--Pandarens are abominations
-				self:QueueEmote("/gasp",sender);
+				self:QueueEmote(pandarenTriggers[math.random(1, #pandarenTriggers)],sender);
+
 				return
 			end
             self:QueueEmote(CrossFactionEmote,sender);
