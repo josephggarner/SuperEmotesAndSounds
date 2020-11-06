@@ -6,6 +6,8 @@
 local MinDelay=1;--         Response delay in seconds."]={};
 local Cooldown=3;--         Minimal time between queued emotes in seconds."]={};
 local defaultTriggerCD=20;
+local emoteCounter = 0;
+local MAX_EMOTES_CHAIN = 4;
 local lastDefaultTriggerTime=GetTime();
 local CrossFactionEmote="FORTHEHORDE";-- Emote sent to cross-faction players."]={};
 local playername = GetUnitName("player");
@@ -46,7 +48,6 @@ local FactionRaces={
 --########--TRIGGERS / RESPONSES-------EDIT/ADD TRIGGERS/RESPONSES HERE---------------------------######--
 --##---##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##-##--##--##
 local Triggers={--      This table contains the trigger phrases and reply type/messages."]={};
-[""]={};
 
 --["is so bashful...too bashful to get your attention."]={};
 --["begs you.  How pathetic."]={};
@@ -62,17 +63,18 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 
 	--ANIMATED EMOTES
 	--Angry & Mad
-	["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
-	--Applaud, Applause & Bravo
-	["applauds at you"]={"THANK", "BOW", "CURTSEY"};
-	--Attacktarget
-	["tells everyone to attack you."]={};
-	--Bashful
-	["is so bashful...too bashful to get your attention."]={};
-	--Beg
-	["begs you.  How pathetic."]={};
-	--Blow
-	["blows you a kiss."]={};
+    ["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
+    --Applaud, Applause & Bravo
+    --["applauds at you"]={"THANK", "BOW", "CURTSEY"};
+	["applauds at you"]={"Angry"};
+    --Attacktarget
+    ["tells everyone to attack you."]={"SURRENDER", "ROAR", "TAUNT","CRY"};
+    --Bashful
+    ["is so bashful...too bashful to get your attention."]={"HUG","INTRODUCE","FIDGET"};
+    --Beg
+    ["begs you.  How pathetic."]={"MOAN","SHOO","SIGH","DOH"};
+    --Blow & Kiss
+    ["blows you a kiss."]={"NOSEPICK","KISS","FLIRT","BLUSH","SLAP","PURR"};
 	--Blush
 	["blushes at you."]={};
 	--Boggle
@@ -146,8 +148,6 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	["points you out as an incoming enemy."]={};
 	--Insult
 	["thinks you are the son of a motherless ogre."]={};
-	--Kiss
-	["blows you a kiss."]={};
 	--Kneel
 	["kneels before you."]={};
 	--Lay, Laydown, Lie & Liedown
@@ -392,12 +392,13 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 			response = nil;
 		end
 	end
---	print("response is a table: "..type(response))
---	print(msg:match("%a*%s(.*)"))
---	print("guid: "..guid)
---	print("msg: "..msg)
---	print("msg: "..type(msg))
---	print("sender: "..sender)
+	--print("response is a table: "..type(response))
+	--print("response: "..response)
+	--print(msg:match("%a*%s(.*)"))
+	--print("guid: "..guid)
+	--print("msg: "..msg)
+	--print("msg: "..type(msg))
+	--print("sender: "..sender)
 		
 	if guid~=PlayerGUID then--  Don't respond to emotes the player sent."]={};
 
@@ -430,7 +431,11 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 				--for i,j in ipairs(response) do self:QueueEmote(j,sender); 
 				--	--print("i="..i..", j ="..j.." , Sender="..sender)
 				--end
-				SES_RE:QueueEmote(response[math.random(1, #response)],sender)
+				--print(emoteCounter)
+				if emoteCounter < MAX_EMOTES_CHAIN then
+					SES_RE:QueueEmote(response[math.random(1, #response)],sender);
+					emoteCounter = emoteCounter + 1;
+				else emoteCounter = 0 end
 	
 			elseif type(response)=="string" then--   Handle single (shouldnt trigger)
 				--print("response is a string?!@?")
@@ -444,6 +449,7 @@ end)
 SES_RE:SetScript("OnUpdate",function(self)
 	local playSuccess = false;
     local now=GetTime();
+	if now-lastemote > 10 then emoteCounter = 0 end
 	if self.ResponseQueue[1] == nil then return end
 --  Check against our global cooldown and if we have messages waiting
 	if table.getn(self.ResponseQueue)>0 and now-lastemote>Cooldown then   
