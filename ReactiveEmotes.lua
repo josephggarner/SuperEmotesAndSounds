@@ -53,8 +53,7 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Angry & Mad
     ["fist in anger at you."]={"GASP", "APOLOGIZE", "GROVEL", "PLEAD"};
     --Applaud, Applause & Bravo
-    --["applauds at you"]={"THANK", "BOW", "CURTSEY"};
-	["applauds at you"]={"Angry"};
+    ["applauds at you"]={"THANK", "BOW", "CURTSEY"};
     --Attacktarget
     ["tells everyone to attack you."]={"SURRENDER", "ROAR", "TAUNT","CRY"};
     --Bashful
@@ -64,139 +63,139 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
     --Blow & Kiss
     ["blows you a kiss."]={"NOSEPICK","KISS","FLIRT","BLUSH","SLAP","PURR"};
 	--Blush
-	["blushes at you."]={};
+	["blushes at you."]={"CURIOUS","FLIRT","QUESTION","PONDER"};
 	--Boggle
-	["boggles at you."]={};
+	["boggles at you."]={"BOW","PEON"};
 	--Bow
-	["bows before you."]={};
+	["bows before you."]={"HI","CURTSEY","BLUSH","GLOAT"};
 	--Bye, Goodbye & Farewell
-	["waves goodbye to you.  Farewell!"]={};
+	["waves goodbye to you.  Farewell!"]={"waves farewell to %N!"};
 	--Cackle
-	["cackles maniacally at you."]={};
+	["cackles maniacally at you."]={"CRY","HELPME","FLOP"};
 	--Charge (No Target Emote)
-	["starts to charge."]={};
+	["starts to charge."]={"begins charging alongside %N."};
 	--Cheer
-	["cheers at you."]={};
+	["cheers at you."]={"DROOL"};
 	--Chew, Eat & Feast
-	["begins to eat rations in front of you."]={};
+	["begins to eat rations in front of you."]={"DOOM", "DROOL"};
 	--Chicken, Flap & Strut
 	--With arms flapping, %Name
-	["struts around you.  Cluck, Cluck, Chicken."]={};
+	["struts around you.  Cluck, Cluck, Chicken."]={"CHICKEN", "CHICKEN", "CHICKEN", "pities %N for inciting a \"Cluck-Off!\""};
 	--Chuckle
-	["chuckles at you."]={};
+	["chuckles at you."]={"CRINGE"};
 	--Clap
-	["claps excitedly for you."]={};
+	["claps excitedly for you."]={"THANK","wonders why %N is clapping and nobody else is...","BOW"};
 	--Commend
-	["commends you on a job well done."]={};
+	["commends you on a job well done."]={"BOW","thanks %N for proving their mother true.","THANK"};
 	--Confused
-	["looks at you with a confused look."]={};
+	["looks at you with a confused look."]={"PONDER","WAVE"};
 	--Congrats & Congratulate
-	["congratulates you."]={};
+	["congratulates you."]={"SALUTE","HAIL"};
 	--Cower & Fear
-	["cowers in fear at the sight of you."]={};
+	["cowers in fear at the sight of you."]={"CACKLE","JK"};
 	--Cry, Sob & Weep
-	["cries on your shoulder."]={};
+	["cries on your shoulder."]={"COMFORT"};
 	--Curious
-	["is curious what you are up to."]={};
+	["is curious what you are up to."]={"SNARL","SHINDIG","SCRATCH"};
 	--Curtsey
-	["curtsies before you."]={};
+	["curtsies before you."]={"BOW","KISS","FART","SHY"};
 	--Dance
     ["dances with you."]={"DANCE", "thinks %N needs to go watch Footloose.", "has never seen moves like %N's before!", "asks if %N knows Kevin Bacon."};
 	--Drink & Shindig
-	["raises a drink to you.  Cheers."]={};
+	["raises a drink to you.  Cheers."]={"HAIL","FOOD","OOM"};
 	--Flee
-	["yells for you to flee."]={};
+	["yells for you to flee."]={"flees from %N with a tear in their eye!","PRAY","GUFFAW"};
 	--Flex & Strong
-	["flexes at you.  Oooooh so strong."]={};
+	["flexes at you.  Oooooh so strong."]={"PEON","PEER","COMMEND","YAWN","COWER"};
 	--Flirt
-	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO"};
+	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO","KISS","hides their left hand before saying they are single and ready to mingle..."};
 	--Followme
-	["motions for you to follow."]={};
+	["motions for you to follow."]={"LOST","SALUTE"};
 	--Gasp
-	["gasps at you."]={};
+	["gasps at you."]={"GASP","SHRUG","RUDE","FLEX"};
 	--Giggle
-	["giggles at you."]={};
+	["giggles at you."]={"TALKQ","INTRODUCE","TICKLE","SURPRISED"};
 	--Gloat
-	["gloats over your misfortune."]={};
+	["gloats over your misfortune."]={"SPIT","STARE","DOOM","MAD"};
 	--Golfclap
-	["claps for you, clearly unimpressed."]={};
+	["claps for you, clearly unimpressed."]={"is unimpressed with %N’s Mom.","SOB","CURTSEY","BITE"};
 	--Greet & Greetings
-	["greets you warmly."]={};
+	["greets you warmly."]={"HAPPY", "INTRODUCE"};
 	--Grovel & Peon
-	["grovels before you like a subservient peon."]={};
+	["grovels before you like a subservient peon."]={"PEST", "SIGH", "SHOO", "PITY"};
 	--Guffaw
-	["takes one look at you and lets out a guffaw."]={};
+	["takes one look at you and lets out a guffaw."]={"BLINK"};
 	--Hail
-	["hails you."]={};
+	["hails you."]={"HELLO"};
 	--Healme
-	["calls out for healing."]={};
+	["calls out for healing."]={"LOL", "VETO", "SOOTHE"};
 	--Hello & Hi
-	["greets you with a hearty hello."]={};
+	["greets you with a hearty hello."]={"WAVE"};
 	--Helpme (No Target Emote)
-	["cries out for help."]={};
+	["cries out for help."]={"VOLUNTEER"};
 	--Incoming
-	["points you out as an incoming enemy."]={};
+	["points you out as an incoming enemy."]={"NO"};
 	--Insult
-	["thinks you are the son of a motherless ogre."]={};
+	["thinks you are the son of a motherless ogre."]={"SNARL", "SURPRISED"};
 	--Kneel
-	["kneels before you."]={};
+	["kneels before you."]={"FLEX", "BORED"};
 	--Lay, Laydown, Lie & Liedown
-	["lies down before you."]={};
+	["lies down before you."]={"CUDDLE", "GROAN"};
 	--Lol
-	["laughs at you."]={};
+	["laughs at you."]={"FART", "SMILE", "QUESTION"};
 	--Lost
-	["wants you to know that he is hopelessly lost."]={};
+	["wants you to know that he is hopelessly lost."]={"FACEPALM"};
 	--Mourn
 	--In quiet contemplation, %Name
-	["mourns your death."]={};
+	["mourns your death."]={"COMFORT", "SOOTHE"};
 	--Nod & Yes
-	["nods at you."]={};
+	["nods at you."]={"NO"};
 	--OOM
-	["is low on mana."]={};
+	["is low on mana."]={"FROWN"};
 	--Openfire
-	["orders you to open fire."]={};
+	["orders you to open fire."]={"NOD"};
 	--Plead
-	["pleads with you."]={};
+	["pleads with you."]={"WRATH", "NO", "SNUB"};
 	--Point
-	["points at you."]={};
+	["points at you."]={"MOON"};
 	--Ponder
-	["ponders your actions."]={};
+	["ponders your actions."]={"SMIRK"};
 	--Pray
-	["says a prayer for you."]={};
+	["says a prayer for you."]={"THANK"};
 	--Puzzled
-	["puzzled by you. What are you doing?"]={};
+	["puzzled by you. What are you doing."]={"SNICKER"};
 	--Question & Talkq
-	["questions you."]={};
+	["questions you."]={"SHRUG", "SMILE", "REAR"};
 	--Rasp & Rude
-	["makes a rude gesture at you."]={};
+	["makes a rude gesture at you."]={"PUNCH"};
 	--Roar
-	["roars with bestial vigor at you.  So fierce!"]={"BOGGLE", "YAWN"};
+	["roars with bestial vigor at you.  So fierce!"]={"BOGGLE", "YAWN", "FEAR", "BONK"};
 	--Rofl
-	["rolls on the floor laughing at you."]={};
+	["rolls on the floor laughing at you."]={"CRY"};
 	--Salute
-	["salutes you with respect."]={};
+	["salutes you with respect."]={"HAIL", "BOW"};
 	--Shrug (Default Reply, do not react)
 	--["shrugs at you.  Who knows."]={};
 	--Shy
-	["smiles shyly at you."]={};
+	["smiles shyly at you."]={"SMILE", "BLUSH"};
 	--Sleep (No Target Emote)
-	["falls asleep. Zzzzzzz."]={};
+	["falls asleep. Zzzzzzz."]={"SPOON", "YAWN", "TAP"};
 	--Surrender
-	["surrenders before you.  Such is the agony of defeat..."]={};
+	["surrenders before you.  Such is the agony of defeat..."]={"ROAR", "LAUGH"};
 	--Talk
-	["wants to talk things over with you."]={};
+	["wants to talk things over with you."]={"NO", "LISTEN"};
 	--Talkex
-	["talks excitedly with you."]={};
+	["talks excitedly with you."]={"BLINK", "NOSEPICK", "PEST", "SHOO"};
 	--Taunt
-	["makes a taunting gesture at you. Bring it."]={};
+	["makes a taunting gesture at you. Bring it."]={"RASP", "INSULT", "DOOM"};
 	--Victory
-	["basks in the glory of victory with you."]={};
+	["basks in the glory of victory with you."]={"CHEER", "ROAR"};
 	--Violin
-	["plays the world's smallest violin for you."]={};
+	["plays the world's smallest violin for you."]={"CRY"};
 	--Wave
-	["waves at you."]={};
+	["waves at you."]={"GREET"};
 	--Welcome
-	["welcomes you."]={};
+	["welcomes you."]={"THANK", "INTRODUCE"};
 
 	--NON-ANIMATED EMOTES
 	--Agree
@@ -315,6 +314,9 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--NO MESSAGE EMOTES
 	--Sit
 	--Train
+
+	--NO REPONSE
+	["begins charging alongside"]={"NOREPLY"};
 }
 local pandarenTriggers = {"/gasp", "/puzzled", "/question", "/drool", "/panic", "/shoo"};
 local defaultTrigger = "SHRUG";
@@ -412,6 +414,7 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 				--	--print("i="..i..", j ="..j.." , Sender="..sender)
 				--end
 				--print(emoteCounter)
+				if response[1] == "NOREPLY" then return end
 				if emoteCounter < MAX_EMOTES_CHAIN then
 					SES_RE:QueueEmote(response[math.random(1, #response)],sender);
 					emoteCounter = emoteCounter + 1;
