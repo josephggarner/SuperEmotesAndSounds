@@ -8,6 +8,7 @@ local Cooldown=3;--         Minimal time between queued emotes in seconds."]={};
 local defaultTriggerCD=20;
 local emoteCounter = 0;
 local MAX_EMOTES_CHAIN = 4;
+local globalResponseCD = 15;
 local lastDefaultTriggerTime=GetTime();
 local CrossFactionEmote="FORTHEHORDE";-- Emote sent to cross-faction players."]={};
 local playername = GetUnitName("player");
@@ -65,22 +66,20 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Blush
 	["blushes at you."]={"CURIOUS","FLIRT","QUESTION","PONDER"};
 	--Boggle
-	["boggles at you."]={"BOW","PEON"};
+	["boggles at you."]={"BOW","GROVEL"};
 	--Bow
 	["bows before you."]={"HI","CURTSEY","BLUSH","GLOAT"};
 	--Bye, Goodbye & Farewell
 	["waves goodbye to you.  Farewell!"]={"waves farewell to %N!"};
 	--Cackle
 	["cackles maniacally at you."]={"CRY","HELPME","FLOP"};
-	--Charge (No Target Emote)
-	["starts to charge."]={"begins charging alongside %N."};
 	--Cheer
 	["cheers at you."]={"DROOL"};
 	--Chew, Eat & Feast
-	["begins to eat rations in front of you."]={"DOOM", "DROOL"};
+	["begins to eat rations in front of you."]={"THREATEN", "DROOL"};
 	--Chicken, Flap & Strut
 	--With arms flapping, %Name
-	["struts around you.  Cluck, Cluck, Chicken."]={"CHICKEN", "CHICKEN", "CHICKEN", "pities %N for inciting a \"Cluck-Off!\""};
+	["struts around you.  Cluck, Cluck, Chicken."]={"CHICKEN", "CHICKEN", "CHICKEN", "incites a \"Cluck-Off!\""};
 	--Chuckle
 	["chuckles at you."]={"CRINGE"};
 	--Clap
@@ -100,13 +99,13 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Curtsey
 	["curtsies before you."]={"BOW","KISS","FART","SHY"};
 	--Dance
-    ["dances with you."]={"DANCE", "thinks %N needs to go watch Footloose.", "has never seen moves like %N's before!", "asks if %N knows Kevin Bacon."};
+    ["dances with you."]={"DANCE", "thinks %N needs to go watch Footloose.", "has never seen moves like %N's before!", "asks if %N knows Kevin Bacon.", "challenges everybody here to a dance off!"};
 	--Drink & Shindig
 	["raises a drink to you.  Cheers."]={"HAIL","FOOD","OOM"};
 	--Flee
 	["yells for you to flee."]={"flees from %N with a tear in their eye!","PRAY","GUFFAW"};
 	--Flex & Strong
-	["flexes at you.  Oooooh so strong."]={"PEON","PEER","COMMEND","YAWN","COWER"};
+	["flexes at you.  Oooooh so strong."]={"GROVEL","PEER","COMMEND","YAWN","COWER"};
 	--Flirt
 	["flirts with you."]={"GLOAT", "READY", "POUNCE","VETO","KISS","hides their left hand before saying they are single and ready to mingle..."};
 	--Followme
@@ -116,13 +115,13 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Giggle
 	["giggles at you."]={"TALKQ","INTRODUCE","TICKLE","SURPRISED"};
 	--Gloat
-	["gloats over your misfortune."]={"SPIT","STARE","DOOM","MAD"};
+	["gloats over your misfortune."]={"SPIT","STARE","THREATEN","MAD"};
 	--Golfclap
-	["claps for you, clearly unimpressed."]={"is unimpressed with %N’s Mom.","SOB","CURTSEY","BITE"};
+	["claps for you, clearly unimpressed."]={"is unimpressed with %N's Mom.","CRY","CURTSEY","BITE"};
 	--Greet & Greetings
 	["greets you warmly."]={"HAPPY", "INTRODUCE"};
 	--Grovel & Peon
-	["grovels before you like a subservient peon."]={"PEST", "SIGH", "SHOO", "PITY"};
+	["grovels before you like a subservient peon."]={"SIGH", "SHOO", "PITY"};
 	--Guffaw
 	["takes one look at you and lets out a guffaw."]={"BLINK"};
 	--Hail
@@ -179,15 +178,15 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Shy
 	["smiles shyly at you."]={"SMILE", "BLUSH"};
 	--Sleep (No Target Emote)
-	["falls asleep. Zzzzzzz."]={"SPOON", "YAWN", "TAP"};
+	["falls asleep. Zzzzzzz."]={"CUDDLE", "YAWN", "TAP"};
 	--Surrender
 	["surrenders before you.  Such is the agony of defeat..."]={"ROAR", "LAUGH"};
 	--Talk
 	["wants to talk things over with you."]={"NO", "LISTEN"};
 	--Talkex
-	["talks excitedly with you."]={"BLINK", "NOSEPICK", "PEST", "SHOO"};
+	["talks excitedly with you."]={"BLINK", "NOSEPICK", "SHOO"};
 	--Taunt
-	["makes a taunting gesture at you. Bring it."]={"RASP", "INSULT", "DOOM"};
+	["makes a taunting gesture at you. Bring it."]={"RASP", "INSULT", "THREATEN"};
 	--Victory
 	["basks in the glory of victory with you."]={"CHEER", "ROAR"};
 	--Violin
@@ -221,10 +220,10 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Cough
 	--Crack & Knuckles
 	--Cringe
-	--Cuddle
+	--Cuddle & Spoon
 	--Disappointed & Frown
 	--Doh
-	--Doom & Wrath
+	--Doom, Threaten & Wrath
 	--Drool
 	--Duck
 	--Eye
@@ -289,7 +288,6 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 	--Soothe
 	--Sorry
 	--Spit
-	--Spoon
 	--Stare
 	--Stink
 	--Surprised
@@ -317,6 +315,15 @@ local Triggers={--      This table contains the trigger phrases and reply type/m
 
 	--NO REPONSE
 	["begins charging alongside"]={"NOREPLY"};
+
+	--GLOBAL RESPONSE
+	["challenges everybody here to a dance off!"]={"DANCE"};
+	["yells \"FOOTLOOSE!\""]={"DANCE"};
+	--Charge (No Target Emote)
+	["starts to charge."]={"begins charging alongside %N."};
+	["incites a \"Cluck Off!\""]={"CHICKEN"};
+	["cheers for the Horde!"]={"FORTHEHORDE"};
+	["cheers for the Alliance!"]={"FORTHEALLIANCE"};
 }
 local pandarenTriggers = {"/gasp", "/puzzled", "/question", "/drool", "/panic", "/shoo"};
 local defaultTrigger = "SHRUG";
@@ -360,6 +367,23 @@ function findEmoteIndex(msg)
 			return key
 		end
 	end
+end
+
+local globalTriggers = {"challenges everybody here to a dance off!",
+						"yells \"FOOTLOOSE!\"",
+						"starts to charge.",
+						"incites a \"Cluck Off!\"",
+						"cheers for the Horde!",
+						"cheers for the Alliance!"};
+
+function checkForGlobal(msg)
+	for key, value in pairs(globalTriggers) do
+		local found = string.find(msg, value)
+		if found ~= nil then
+			return true
+		end
+	end
+	return false
 end
 
  --listens to messages and determines how to respond if at all
@@ -415,6 +439,8 @@ SES_RE:SetScript("OnEvent",function(self,event,...)
 				--end
 				--print(emoteCounter)
 				if response[1] == "NOREPLY" then return end
+				--print(checkForGlobal(msg))
+				if checkForGlobal(msg) and now-lastemote<globalResponseCD then return end
 				if emoteCounter < MAX_EMOTES_CHAIN then
 					SES_RE:QueueEmote(response[math.random(1, #response)],sender);
 					emoteCounter = emoteCounter + 1;
