@@ -17,19 +17,20 @@ superframe:SetBackdrop( {
 --###Slash command Handler###--
 SLASH_SES1, SLASH_SES2 = '/ses', '/superemotes';
 local commandlist = {
-	 "help", "list", "jif"--, "fav", "listfavs", "toggle", "listfunctions", "rand"
+	 "help", "list" --, "fav", "listfavs", "toggle", "listfunctions", "rand"
 }
 local helplist = {
 	{ "++----------------------------", "++------------------------------++" },
 	{ "--", "Invoke SES with '/ses', '/superemotes'" },
     { "--/ses help", "You're here!" },
     --{ "--/ses rand", "Performs a random Emote. NYI" },
-	{ "--/ses 'emote'", "Plays the assigned Emote." },
-    { "--/ses list", "Lists available emotes." },
+	{ "--/ses 'emote'", "Plays the assigned Audio Emote." },
+    { "--/ses list", "Lists available Audio emotes." },
 	--{ "--/ses fav 'emote' 'customcommand'", "Set an emote to a custom command. NYI" },
 	--{ "--/ses listfavs", "Lists favorite emotes. NYI" },
 	--{ "--/ses toggle 'function'", "Turns on/off function. NYI" },
 	--{ "--/ses listfunctions", "Lists functions. NYI" }
+	--{"--/ses opt","Opens options in Interface Panel"}
 }
 local function handler(msg, editBox) 
 		local _, _, cmd, argsString = string.find(msg, "%s?(%w+)%s?(.*)")	--disect the slashcommand call into usable parts
@@ -40,14 +41,6 @@ local function handler(msg, editBox)
 		end
 		if SEScheckCommands(cmd) > 0 then				--check command table for existing command that matches
 			--#############COMMANDS BELOW##############--
-
-			if cmd == 'jif' then 
-				if args[1] ~= "" and args[1] ~= nil then 
-				print("Jason is really Fat!!")
-				else
-				print("Jason is kind of Fat!!")
-				end
-			end
 			---------------------------
 			if cmd =='help' then
 				for i=1, #helplist do
@@ -56,10 +49,10 @@ local function handler(msg, editBox)
 					else
 						print(helplist[i][1], "-", helplist[i][2])
 					end
-				end 
+				end					-- Print Helplist to chat
 			end
 			----------------------------
-			if cmd =='list' then
+			if cmd =='list' then						-- Show the audio emote window
 				superframe:Show();
 			end
 			----------------------------
@@ -96,7 +89,7 @@ function SEScheckEmotes(cmd)
                end
                index = index + 1;
        end
-		--print("returning 0")
+	   -- if not found in emote library return 0
        return 0;
 end
 --############################--
@@ -132,9 +125,7 @@ local fullname = playername.."-"..servername;
 		--SESPlaySoundFile(SESTriggersLIB.Leave)
 	end
 	------------------------------------
-	function events:PLAYER_DEAD(...)		--UNIT_SPELLCAST_START for testing
-		--if debugmode then print(arg1.." "..playername) end
-		--if arg1 ~= "player" then return end
+	function events:PLAYER_DEAD(...)		
 		local event = "PLAYER_DEAD"
 		if debugmode then print(event) end
 		--G_SES_RE:QueueEmote("/hi","target")	--call queue emote function in ReactiveEmotes
@@ -169,7 +160,7 @@ local fullname = playername.."-"..servername;
 		EventListener:RegisterEvent(k); -- Register all events for which handlers have been defined
 	end
 --###############SOLO END###########################--
---################broadcast################
+--################broadcast - broadcast your solo events to others################
 function broadcastSES(event)
 	if broadcastEnabled ~= true then return end						--if broadcast is turned off don't share
 	if IsInGroup() then
@@ -191,21 +182,19 @@ local SESsender;
 		if sender == fullname then return end	--ignore if from yourself
 		local msg = SESnamesplit(message)[1]
 		local emoteTableLoc= tonumber(SESnamesplit(message)[2])
-		if setContains(SESevents,message) == nil and msg ~= "EMOTE" then print("Event not found, and no EMOTE string found.") return end	
+		if setContains(SESevents,message) == nil and msg ~= "EMOTE" then print("Event not found, and no EMOTE string found. Please report this bug#: 001-No Valid Events") return end	
 		if debugmode then 
 			print(prefix..", "..message..", "..channel..", "..sender)	--event..", "..prefix..", "..message..", "..channel..", "..sender
 			print(fullname)
 			print(setContains(SESevents,message))
 		end
 		SESsender = SESnamesplit(sender)[1]
-		
-		--print(msg..","..emoteTableLoc)
+
 		if msg ~= "EMOTE" then
 		SESevents[message](self); -- call one of the functions
 		else
 			if SESEmotesLIB[emoteTableLoc] ~= nil then
-			SESPlayEmoteSound(SESEmotesLIB,emoteTableLoc) --call emote sound
-			--print("Playing Emote.")
+			SESPlayEmoteSound(SESEmotesLIB,emoteTableLoc) -- call emote sound
 			end
 		end
 	end
@@ -214,20 +203,30 @@ local SESsender;
 			return SESevents[event] ~= nil
 		end
 --#################################
-	function SESevents:PLAYER_ENTERING_WORLD(...)
+-- RESPONSES TO EVENTS SENT BY OTHERS--------------
+	function SESevents:PLAYER_ENTERING_WORLD(...)		-- TODO Fix so this doesn't interrupt casting (summoning stone)
 		local event = "PLAYER_ENTERING_WORLD"
 		if debugmode then print("SES_"..event) end
 		local emoteQueueTable = {}
 			emoteQueueTable = {"thanks %N for finally joining the group.","licks %N.","/taunt","/whistle","/greet","/flex"}
 		G_SES_RE:QueueEmote(emoteQueueTable[math.random(1, #emoteQueueTable)],SESsender)
-
 	end
 	----------------------
-	function SESevents:PLAYER_DEAD(...)
+	function SESevents:PLAYER_DEAD(...)					-- When another player dies
 		local event = "PLAYER_DEAD"
 		if debugmode then print("SES_"..event.."called.".." Target is:"..SESsender) end
 		local emoteQueueTable = {}
-			emoteQueueTable = {"/point","/laugh","/cry","teabags %N.","/mourn","/pity","/violin","bumped into %N's dead body. Oops!","yells at %N for sleeping on the job!","asks %N if they've ever tried -\"Not Dying\""}
+			emoteQueueTable = {
+			"/point",
+			"/laugh",
+			"/cry",
+			"teabags %N.",
+			"/mourn",
+			"/pity",
+			"/violin",
+			"bumped into %N's dead body. Oops!",
+			"yells at %N for sleeping on the job!",
+			"asks %N if they've ever tried -\"Not Dying\""}
 		G_SES_RE:QueueEmote(emoteQueueTable[math.random(1, #emoteQueueTable)],SESsender)
 	end
 	------------------------TEMPLATE------------------------------------------
@@ -241,6 +240,7 @@ local SESsender;
 	--end
 	--------------------------------------------------------------------------------
 --####Listeners	############
+
 	----register the above events to frame
 		SESAddonListener:SetScript("OnEvent", function(self, event, ...)
 		AddonEvents[event](self, ...); -- call one of the functions above
@@ -274,5 +274,6 @@ end
 function SESPlayEmoteSound(LibraryTable,InnerTable) 
 	if LibraryTable == nill then print("There was an error with SES, aborting play.") return end
 	if InnerTable == nill then print("There was an error with SES, aborting play.") return end
+	-- can make libraryTable a variable so we can have mroe libraries than SESEmotesLIB
 	PlaySoundFile(SESEmotesLIB[tonumber(InnerTable)][2])
 end

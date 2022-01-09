@@ -1,4 +1,4 @@
--- Author      : Chris Xo-Malfurion
+-- Author      : Chris Backpack-Malfurion
 --updated: 4/25/2020
 local SESpath = "Interface/AddOns/SuperEmotesAndSounds/Sounds/"		--ROOT for sound files
 
@@ -6,12 +6,10 @@ SESTriggersLIB =
 {
 	Triggered = 
 	{
-		SESpath .. "TRIGGERS/TRIGGERED/gofyourself.mp3",
 		SESpath .. "TRIGGERS/TRIGGERED/kid.mp3",
 		SESpath .. "Emotes/nailedit.mp3",
 		SESpath .. "Emotes/whatswrongwithme.mp3",
-		SESpath .. "Emotes/wheresmybackup.mp3",
-		SESpath .. "Emotes/justgetgot.mp3",
+		SESpath .. "Emotes/wheresmybackup.mp3"
 	},
 	Sad = 
 	{
@@ -45,7 +43,6 @@ SESEmotesLIB =				--{Default Command, Clip Path, description of clip}
 	{'1v1'		,SESpath .."Emotes/oneonone.mp3","1v1 me B*tches"},
 	{'epic'		,SESpath .."Emotes/epicspeech.mp3","Epic Loot Event"},
 	{'gkick'	,SESpath .."Emotes/gkick.mp3","Guild Kick"},
-	{'dam'	,SESpath .."Emotes/mwahaha.mp3","Dayum"},
 
 	-------~*~*~*~*~*~*~**~*~----------
 	--jas
@@ -68,7 +65,6 @@ SESEmotesLIB =				--{Default Command, Clip Path, description of clip}
 
 	-------~*~*~*~*~*~*~**~*~----------
 	--Fred
-	{'gotgot'	,SESpath .."Emotes/justgetgot.mp3","Did I get got"},
 
 	-------~*~*~*~*~*~*~**~*~----------
 	--andrw
@@ -88,35 +84,8 @@ SESEmotesLIB =				--{Default Command, Clip Path, description of clip}
 	{'fap'	,SESpath .."Emotes/savagefap.mp3","Auugh auugh auugh"},
 	{'dundun'	,SESpath .."Emotes/dundundun.mp3","Dun dun \/ dunnn"},
 	{'triple'	,SESpath .."Emotes/triple.mp3","Oh Baby a Tripple"},
-	{'bye'	,SESpath .."Emotes/byehaveagreattime.mp3","Bye Great Time"},
 	{'turtles'	,SESpath .."Emotes/turtles.mp3","I <3 Turtles"},
 	
 	
 
 }
-
---for key, val, level, tab in pairsdeep(SESEmotesLIB) do
---    print(key, val, level, tab)
---    -- key is the element key in its table, val is the element
---    -- level is how many subtables deep we are, tab is the table containing current element
---end
-
---function pairsdeep(t)
---    local stack = {{k = nil, t = t}}
---    local iter, nval
---    iter = function()
---        local top = stack[#stack]
---        if not top then return nil end
---        top.k, nval = next(top.t, top.k)
---        if not top.k then
---            stack[#stack] = nil
---            return iter()
---        elseif type(nval) == 'table' then
---            stack[#stack+1] = {k = nil, t = nval}
---            return iter()
---        else
---            return top.k, nval, #stack, top.t
---        end
---    end
---    return iter
---end
