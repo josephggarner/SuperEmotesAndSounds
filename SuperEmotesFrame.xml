@@ -6,7 +6,7 @@
 		</Size>
 		<NormalFont style="GameFontHighlightLeft" />
 	</Button>
-	<Frame name="SuperEmotesFrame" inherits="BackdropTemplate" movable="true" enableMouse="true" enableMouseMotion="true">
+	<Frame name="SuperEmotesFrame" inherits="BackdropTemplate" movable="true" enableMouse="true" enableMouseMotion="true" clampedToScreen="true">
 		<Size x="284" y="365" />
 		<Anchors>
 			<Anchor point="TOPLEFT" x="468" y="-48" />
