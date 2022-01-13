@@ -117,7 +117,7 @@ local debugmode = false;
 --######################
 local playername = GetUnitName("player");
 local servername = GetRealmName("player");
-local fullname = playername.."-"..servername;
+local fullname = playername.."-"..servername:gsub("%s", "");
 
 	function events:PLAYER_ENTERING_WORLD(...)
 		local event = "PLAYER_ENTERING_WORLD"

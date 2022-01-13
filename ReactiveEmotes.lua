@@ -13,7 +13,7 @@ local lastDefaultTriggerTime=GetTime();
 local CrossFactionEmote="FORTHEHORDE";-- Emote sent to cross-faction players."]={};
 local playername = GetUnitName("player");
 local servername = GetRealmName("player");
-local fullname = playername.."-"..servername;
+local fullname = playername.."-"..servername:gsub("%s", "");
 local lastemote=GetTime();
 local NamePattern="%%N";--  Pattern for string.gsub() to replace with the sender's name
 local PlayerGUID;-- We'll store this later when it's available
