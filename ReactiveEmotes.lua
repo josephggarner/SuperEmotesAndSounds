@@ -116,7 +116,7 @@ local Triggers={
 	--Giggle
 	["giggles at you."]={"TALKQ","INTRODUCE","TICKLE","SURPRISED"};
 	--Gloat
-	["gloats over your misfortune."]={"SPIT","STARE","THREATEN","MAD"};
+	["gloats over your misfortune."]={"spits on %N's mom.","STARE","THREATEN","MAD"};
 	--Golfclap
 	["claps for you, clearly unimpressed."]={"is unimpressed with %N's Mom.","CRY","CURTSEY","BITE"};
 	--Greet & Greetings
