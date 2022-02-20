@@ -1,5 +1,5 @@
 ## Title: SuperEmotesAndSounds
-## Version: 1.25
+## Version: 1.26
 ## Author: H Backpack-Malfurion,A Ellipsee-Malfurion,H Fpe-Malfurion,A Blacker-ObsidianEdge(classic),A Whiter-ObsidianEdge(classic)
 ## Interface: 90105
 # /run print((select(4, GetBuildInfo()))) To get current Interface number, run in wow chat.
