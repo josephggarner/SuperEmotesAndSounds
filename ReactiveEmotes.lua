@@ -199,30 +199,53 @@ local Triggers={
 
 	--NON-ANIMATED EMOTES
 	--Agree
+	["agrees with you."]={"FLIRT","THANK"};
 	--Amaze
+	["amazed by you."]={"FLIRT","THANK"};
 	--Apologize
+	["apologizes to you."]={"GUFFAW","THANK","BOW","THREATEN"};
 	--Bark
+	["barks at you."]={"BARK","COWER","thinks %N needs to use mouthwash... Stinky!"};
 	--Beckon
-	--Belch
+	["beckons you over."]={"QUESTION","DOH","BOW","NO"};
+	--Belch--Burp
+	["burps rudely in your face."]={"CRINGE","RASP","INSULT","BELCH"};
 	--Bite
+	["bites you."]={"CRINGE","RASP","INSULT","CRY","BLEED"};
 	--Bleed
+		--Not sure this will work, no target.
 	--Blink
+	["blinks at you."]={"WINK","SNUB","INSULT","SHOO","BORED"};
 	--Blood
+	["burps rudely in your face."]={"CRINGE","RASP","INSULT","BELCH"};
 	--Bonk
+	["bonks you on the noggin. Doh!"]={"CRINGE","RASP","INSULT","BELCH"};
 	--Bored
+	["is terribly bored with you."]={"MOON","RASP","ROAR","GREET"};
 	--Bounce
+	["bounces up and down in front of you."]={"CRINGE","FLIRT","INSULT","BELCH","ROAR","NOSEPICK"};
 	--BRB
-	--Burp
+		--Not sure this will work, no target.
 	--Calm
-	--Cat
-	--Catty & Scratch
+	["tries to calm you down."]={"ROAR","THANK","NO","decrees that they will NOT be calming down!"};
+	--Cat--Catty & Scratch
+	["scratches you. How catty!"]={"PURR","CRY","SHOO","RUDE"};
 	--Cold
+	["lets you know that she is cold."]={"CUDDLE","DOH","COMFORT"};
+	["lets you know that he is cold."]={"CUDDLE","DOH","COMFORT"};
 	--Comfort
+	["comforts you."]={"CRINGE","CRY","needs more than what %N has to offer."};
 	--Cough
+	["coughs at you."]={"CRINGE","RASP","INSULT","thinks %N needs a covid test.."};
 	--Crack & Knuckles
+	["cracks her knuckles while staring at you."]={"CRINGE","RASP","IMPATIENT","CRY","MOAN"};
+	["cracks his knuckles while staring at you."]={"CRINGE","RASP","IMPATIENT","CRY","MOAN"};
 	--Cringe
+	["cringes away from you."]={"RASP","CRY","GLARE"};
 	--Cuddle & Spoon
+	["cuddles up against you."]={"FLIRT","LICK","PURR","HUG","MOAN","MASSAGE"};
 	--Disappointed & Frown
+	["frowns with disappointment at you."]={"CRINGE","CRY","GROAN","FART","MOCK"};
 	--Doh
 	--Doom, Threaten & Wrath
 	--Drool
